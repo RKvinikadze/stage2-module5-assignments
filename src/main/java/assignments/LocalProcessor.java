@@ -26,7 +26,8 @@ public class LocalProcessor {
     public void listIterator(LinkedList<String> stringList) {
         stringArrayList = new LinkedList<>(stringList);
         for (String string: stringList) {
-            System.out.println(string.hashCode());
+            if (string != null)
+                System.out.println(string.hashCode());
         }
     }
 
