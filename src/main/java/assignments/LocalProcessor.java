@@ -3,6 +3,7 @@ package assignments;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Scanner;
 
 import assignments.annotations.FullNameProcessorGeneratorAnnotation;
@@ -14,24 +15,12 @@ import lombok.Setter;
 @Getter
 @Setter
 public class LocalProcessor {
-    private String processorName;
+    private StringBuilder processorName;
     private Long period = 10_000_000_000_000L;
-    protected String ProcessorVersion;
+    protected String processorVersion;
     private Integer valueOfCheap;
     private Scanner informationScanner;
-    static LinkedList<String> stringArrayList = new LinkedList<>();
-
-    public LocalProcessor(String processorName, Long period, String processorVersion, Integer valueOfCheap,
-                          Scanner informationScanner) {
-        this.processorName = processorName;
-        this.period = period;
-        this.ProcessorVersion = processorVersion;
-        this.valueOfCheap = valueOfCheap;
-        this.informationScanner = informationScanner;
-    }
-
-    public LocalProcessor() {
-    }
+    static List<String> stringArrayList = new LinkedList<>();
 
     @ListIteratorAnnotation
     public void listIterator(LinkedList<String> stringList) {
@@ -42,12 +31,10 @@ public class LocalProcessor {
     }
 
     @FullNameProcessorGeneratorAnnotation
-    public String fullNameProcessorGenerator(LinkedList<String> stringList) {
-        StringBuilder sb = new StringBuilder();
+    public StringBuilder fullNameProcessorGenerator(LinkedList<String> stringList) {
         for (String string : stringList) {
-            sb.append(string).append(' ');
+            processorName.append(string).append(' ');
         }
-        processorName = sb.toString();
         return processorName;
     }
 
@@ -59,15 +46,12 @@ public class LocalProcessor {
             while (informationScanner.hasNext()) {
                 sb.append(informationScanner.nextLine());
             }
-            ProcessorVersion = sb.toString();
+            processorVersion = sb.toString();
         }catch (FileNotFoundException e){
             e.printStackTrace();
         }finally {
             if (informationScanner != null)
                 informationScanner.close();
         }
-
-
-
     }
 }
