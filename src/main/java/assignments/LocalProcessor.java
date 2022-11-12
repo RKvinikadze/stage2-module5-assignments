@@ -23,7 +23,7 @@ public class LocalProcessor {
     static List<String> stringArrayList = new LinkedList<>();
 
     @ListIteratorAnnotation
-    public void listIterator(LinkedList<String> stringList) {
+    public void listIterator(List<String> stringList) {
         stringArrayList = new LinkedList<>(stringList);
         for (String string: stringList) {
             if (string != null)
